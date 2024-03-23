@@ -8,22 +8,90 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1.Import the standard Libraries.
+
+2.Set variables for assigning dataset values.
+
+3.Import linear regression from sklearn.
+
+4.Assign the points for representing in the graph.
+
+5.Predict the regression for marks by using the representation of the graph.
+
+6.Compare the graphs and hence we obtained the linear regression for the given datas.
+ 
+
 
 ## Program:
 ```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: INESH.N
+RegisterNumber:212223220036
+ 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error,mean_squared_error
+df=pd.read_csv('student_scores.csv')
+print(df)
+df.head(0)
+df.tail(0)
+print(df.head())
+print(df.tail())
+x = df.iloc[:,:-1].values
+print(x)
+y = df.iloc[:,1].values
+print(y)
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(x_train,y_train)
+y_pred = regressor.predict(x_test)
+print(y_pred)
+print(y_test)
+#Graph plot for training data
+plt.scatter(x_train,y_train,color='black')
+plt.plot(x_train,regressor.predict(x_train),color='blue')
+plt.title("Hours vs Scores(Training set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+#Graph plot for test data
+plt.scatter(x_test,y_test,color='black')
+plt.plot(x_train,regressor.predict(x_train),color='red')
+plt.title("Hours vs Scores(Testing set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+mse=mean_absolute_error(y_test,y_pred)
+print('MSE = ',mse)
+mae=mean_absolute_error(y_test,y_pred)
+print('MAE = ',mae)
+rmse=np.sqrt(mse)
+print("RMSE= ",rmse)
 ```
 
 ## Output:
-![simple linear regression model for predicting the marks scored](sam.png)
+## Dataset
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/bebc32e0-8fe8-4213-8374-bc0db40cbfca)
+##df.tail()
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/8474f898-b759-4a18-b5f5-9052ed234313)
+##Array value of x
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/5e906cc4-c0c3-4a6d-a569-670f1bf895e0)
+##Array value of y
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/154e03e7-3c1b-4758-97cc-5691f2be74cd)
+##value of y prediction
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/a72a1b18-5e97-41e4-91f1-74f2caf32fd6)
+##Array values of Y test
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/7736865e-ce66-4a66-a3e8-d27e9610a83f)
+##Training Set Value
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/b1d80e78-1ef2-4be3-8a79-7ab23b283e47)
+##Test Set Graph
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/1049ab0e-15a3-4050-8820-088e39acd350)
+##Values of MAE and RMSE
+![image](https://github.com/inesh-2384/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/146412203/616601c4-5062-4a84-ac0a-04851e8a3285)
 
 
 ## Result:
